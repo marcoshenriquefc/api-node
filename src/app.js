@@ -7,42 +7,19 @@ db.once("open", () => {
     console.log('conexão com o banco feita com sucesso')
 })
 
-
 const app = express();
-
-// const books = [
-//     {
-//         "id"        : 1,
-//         "titulo"    : 'Senhor dos anéis',
-//         "autor"     : 'Link park'
-//     },
-//     {
-//         "id"        : 2,
-//         "titulo"    : 'Tiranossauro',
-//         "autor"     : 'Jô soares'
-//     },
-//     {
-//         "id"        : 3,
-//         "titulo"    : 'Casa automática',
-//         "autor"     : 'Viniccius 13'
-//     },
-
-// ]
-
 app.use(express.json())
+
 
 app.get('/', (req, res) => {
     res.status(200).send('Estudo de Node.Js')
 })
 
+// PEGA LIVROS DO BANCO
 app.get('/livros', (req, res) => {
-
     books.find((err, booksFind) =>{
-
         res.status(200).json(booksFind)
     } )
-
-
 })
 
 app.get('/livros/:id', (req, res) => {
@@ -54,8 +31,6 @@ app.get('/livros/:id', (req, res) => {
 
 
 app.post('/livros', (req, res) => {
-    // const newbooks = JSON.parse(req.body)
-
     books.push(req.body);
 
     res.status(201).send('Cadastrado com sucesso')
