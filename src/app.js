@@ -20,16 +20,6 @@ app.get('/livros/:id', (req, res) => {
 })
 
 
-
-app.post('/livros', (req, res) => {
-    books.push(req.body);
-
-    res.status(201).send('Cadastrado com sucesso')
-
-})
-
-
-
 app.put('/livros/:id', (req, res) => {
     const indexBook = findBookIndex(req.params.id)
 
