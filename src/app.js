@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import db from "./config/dbconfig.js"
 import books from './models/Livros.js'
+import routes from "./routes/index.js"
 
 db.on("error", console.log.bind(console, "Erro de conexão ============ "))
 db.once("open", () => {
@@ -10,17 +11,7 @@ db.once("open", () => {
 const app = express();
 app.use(express.json())
 
-
-app.get('/', (req, res) => {
-    res.status(200).send('Estudo de Node.Js')
-})
-
-// PEGA LIVROS DO BANCO
-app.get('/livros', (req, res) => {
-    books.find((err, booksFind) =>{
-        res.status(200).json(booksFind)
-    } )
-})
+routes(app);
 
 app.get('/livros/:id', (req, res) => {
     const indexBook = findBookIndex(req.params.id)
