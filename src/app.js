@@ -13,40 +13,40 @@ app.use(express.json())
 
 routes(app);
 
-app.get('/livros/:id', (req, res) => {
-    const indexBook = findBookIndex(req.params.id)
+// app.get('/livros/:id', (req, res) => {
+//     const indexBook = findBookIndex(req.params.id)
 
-    res.json(books[indexBook])
-})
-
-
-app.put('/livros/:id', (req, res) => {
-    const indexBook = findBookIndex(req.params.id)
-
-    books[indexBook].titulo = req.body.titulo;
-    books[indexBook].autor = req.body.autor;
-    res.json(books[indexBook])
-})
+//     res.json(books[indexBook])
+// })
 
 
+// app.put('/livros/:id', (req, res) => {
+//     const indexBook = findBookIndex(req.params.id)
 
-app.delete('/livros/:id', (req, res) => {
-    const {id} = req.params
-    const indexBook = findBookIndex(id);
+//     books[indexBook].titulo = req.body.titulo;
+//     books[indexBook].autor = req.body.autor;
+//     res.json(books[indexBook])
+// })
 
-    console.log(id)
-    console.log(indexBook)
 
-    books.splice(indexBook, 1)
 
-    res.send('Livro deletado com sucesso')
-})
+// app.delete('/livros/:id', (req, res) => {
+//     const {id} = req.params
+//     const indexBook = findBookIndex(id);
 
-function findBookIndex(idBook){
-    const indexBook = books.findIndex(singleBook => singleBook.id === parseInt(idBook))
+//     console.log(id)
+//     console.log(indexBook)
 
-    return indexBook
-}
+//     books.splice(indexBook, 1)
+
+//     res.send('Livro deletado com sucesso')
+// })
+
+// function findBookIndex(idBook){
+//     const indexBook = books.findIndex(singleBook => singleBook.id === parseInt(idBook))
+
+//     return indexBook
+// }
 
 
 
