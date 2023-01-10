@@ -1,7 +1,8 @@
 import express from "express"
-import AutorController from "../controllers/autorController"
+import AuthorController from "../controllers/authorControllerer"
 
 const router = express.Router();
+
 
 
 export default router

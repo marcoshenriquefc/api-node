@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const autorSchema = new mongoose.Schema(
+const authorSchema = new mongoose.Schema(
     {
         id: {
             type: String
@@ -18,6 +18,6 @@ const autorSchema = new mongoose.Schema(
     }
 )
 
-const autores = mongoose.model("autores", autorSchema)
+const authors = mongoose.model("autores", authorSchema)
 
-export default autores
+export default authors
