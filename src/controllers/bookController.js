@@ -70,6 +70,25 @@ class BookController {
         )
     }
 
+    //TO DELETE METHODS
+    static deleteBook = (req, res) => {
+        const idBook = req.params.id;
+
+        books.findByIdAndDelete(
+            idBook,
+            (err) => {
+                if(!err){
+                    res
+                    .status(200)
+                    .send({message: 'Deletado com sucesso' })
+                }
+                else{
+                    res
+                    .send({message: `${err.message} - ERRO ao deletar o livro`})
+                }
+            }
+            )
+    }
 }
 
 export default BookController
