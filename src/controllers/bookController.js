@@ -1,4 +1,3 @@
-import { json } from "express";
 import books from "../models/Livros.js";
 
 class BookController {
