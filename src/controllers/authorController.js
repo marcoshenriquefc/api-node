@@ -1,4 +1,4 @@
-import authors from "../models/Autor.js";
+import authors from "../models/Author.js";
 
 export default class AuthorController {
 
@@ -55,16 +55,21 @@ export default class AuthorController {
 
         authors.findByIdAndUpdate(
             idAuthor,
+            {
+                $set: req.body
+            },
             (err) => {
                 if (!err) {
+                    console.log('aaaa')
                     res
-                        .status(200)
-                        .send(
-                            {
-                                message: `Dados do autor atualizado com sucesso`,
-                            })
+                    .status(200)
+                    .send(
+                        {
+                            message: `Dados do autor atualizado com sucesso`,
+                        })
                 }
                 else {
+                    console.log('bbbb')
                     res
                         .status(400)
                         .send(`${err.message} - ERRO ao atualizar os dados do autor`)
