@@ -4,7 +4,7 @@ export default class AuthorController {
 
     // GET Method to author
     static listAuthor = (req, res) => {
-        authors.find((err, authorFind) =>{
+        authors.find((err, authorFind) => {
             res.status(200).json(authorFind)
         })
     }
@@ -16,15 +16,15 @@ export default class AuthorController {
             idAuthor,
             (err, authorFind) => {
 
-                if(!err) {
+                if (!err) {
                     res
-                    .status(200)
-                    .send(authorFind)
+                        .status(200)
+                        .send(authorFind)
                 }
-                else{
+                else {
                     res
-                    .status(400)
-                    .send({message: `${err.message} - ERRO ID de autor não localizado`})
+                        .status(400)
+                        .send({ message: `${err.message} - ERRO ID de autor não localizado` })
                 }
             }
         )
@@ -34,18 +34,41 @@ export default class AuthorController {
     static registerNewAuthor = (req, res) => {
         let author = new authors(req.body)
 
-        author.save( (err) => {
+        author.save((err) => {
 
-            if(!err){
+            if (!err) {
                 res
-                .status(201)
-                .send(author.toJSON())
+                    .status(201)
+                    .send(author.toJSON())
             }
-            else{
+            else {
                 res
-                .status(400)
-                .send(`${err.message} - ERRO ao cadastrar novo author`)
+                    .status(400)
+                    .send(`${err.message} - ERRO ao cadastrar novo author`)
             }
         })
+    }
+
+    static updateAuthor = (req, res) => {
+        const idAuthor = req.params.id;
+
+        authors.findByIdAndUpdate(
+            idAuthor,
+            (err) => {
+                if (!err) {
+                    res
+                        .status(200)
+                        .send(
+                            {
+                                message: `Dados do autor atualizado com sucesso`,
+                            })
+                }
+                else {
+                    res
+                        .status(400)
+                        .send(`${err.message} - ERRO ao atualizar os dados do autor`)
+                }
+            }
+        )
     }
 }
