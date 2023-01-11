@@ -24,9 +24,28 @@ export default class AuthorController {
                 else{
                     res
                     .status(400)
-                    .send({message: `${err} - ERRO ID de autor não localizado`})
+                    .send({message: `${err.message} - ERRO ID de autor não localizado`})
                 }
             }
         )
+    }
+
+    //POST Method to register new author
+    static registerNewAuthor = (req, res) => {
+        let author = new authors(req.body)
+
+        author.save( (err) => {
+
+            if(!err){
+                res
+                .status(201)
+                .send(author.toJSON())
+            }
+            else{
+                res
+                .status(400)
+                .send(`${err.message} - ERRO ao cadastrar novo author`)
+            }
+        })
     }
 }
