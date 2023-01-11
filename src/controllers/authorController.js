@@ -49,6 +49,7 @@ export default class AuthorController {
         })
     }
 
+    // PUT Method to update author data
     static updateAuthor = (req, res) => {
         const idAuthor = req.params.id;
 
@@ -67,6 +68,28 @@ export default class AuthorController {
                     res
                         .status(400)
                         .send(`${err.message} - ERRO ao atualizar os dados do autor`)
+                }
+            }
+        )
+    }
+
+    // DELETE Method to remove author
+    static deleteAuthor = (req, res) => {
+        const idAuthor = req.params.id;
+
+        authors.findByIdAndDelete(
+            idAuthor,
+            (err) => {
+
+                if(!err) {
+                    res
+                        .status(200)
+                        .send({message: "Autor removido com sucesso"})
+                }
+                else {
+                    res
+                    .status(500)
+                    .send({message: `${err.message} - ERRO ao remover autor`})
                 }
             }
         )
