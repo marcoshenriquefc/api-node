@@ -37,7 +37,7 @@ class BookController {
         book.save((err) => {
 
             if(err){
-                res.send({message: `${err.message} - Fala ao cadastrar um livro`})
+                res.status(400).send({message: `${err.message} - Fala ao cadastrar um livro`})
             }
             else{
                 res.status(201).send(book.toJSON());
