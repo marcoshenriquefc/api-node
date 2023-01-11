@@ -90,6 +90,17 @@ class BookController {
             }
             )
     }
+
+    //FIND BOOK WITH EDITORA
+    static findBookByEditora = (req, res) => {
+        const editoraReq = req.query.editora
+
+        books.find({editora: editoraReq}, {}, (err, bookFind) => {
+            res
+            .status(200)
+            .send(bookFind)
+        })
+    }
 }
 
 export default BookController
