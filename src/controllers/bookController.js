@@ -4,7 +4,9 @@ class BookController {
 
     //TO GET METHODS
     static listBooks = (req, res) => {
-        books.find((err, booksFind) =>{
+        books.find()
+        .populate('autor')
+        .exec((err, booksFind) =>{
             res.status(200).json(booksFind)
         } )
     }
@@ -12,9 +14,9 @@ class BookController {
     static listBookById = (req, res) => {
         const idBook = req.params.id;
 
-        books.findById(
-            idBook,
-            (err, bookFind) => {
+        books.findById(idBook)
+        .populate('autor')
+        .exec((err, bookFind) => {
 
                 if(!err){
                     res
